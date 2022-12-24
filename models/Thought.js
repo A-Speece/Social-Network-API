@@ -4,7 +4,7 @@ const moment = require("moment");
 const reactionSchema = new Schema({
   reactionId: {
     type: Schema.Types.ObjectId,
-    default: mongoose.Types.ObjectId,
+    default: () => new Types.ObjectId(),
   },
   reactionBody: {
     type: String,
@@ -58,6 +58,6 @@ thoughtSchema.virtual("reactionCount").get(function () {
   return this.reactions.length;
 });
 
-const Thought = model("Thought", thoughSchema);
+const Thought = model("Thought", thoughtSchema);
 
 module.exports = Thought;
