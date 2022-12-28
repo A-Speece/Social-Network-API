@@ -9,7 +9,7 @@ module.exports = {
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .then((thought) =>
-        !video
+        !thought
           ? res.status(404).json({ message: "No Thought with that ID" })
           : res.json(thought)
       )

@@ -14,6 +14,6 @@ router.route("/").get(getUsers).post(createUser);
 router.route("/:userId").get(getSingleUser);
 
 // /api/thought/:thoughtId
-router.route("/:usertId").put(updateUser).delete(deleteUser);
+router.route("/:userId").put(updateUser).delete(deleteUser);
 
 module.exports = router;
