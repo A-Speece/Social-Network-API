@@ -73,7 +73,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // Add a video response
+  // Add a reaction response
   addThoughtReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
@@ -83,7 +83,7 @@ module.exports = {
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: "No Thought with this id!" })
-          : res.json(video)
+          : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
   },
@@ -91,13 +91,13 @@ module.exports = {
   removeThoughtReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $pull: { reactions: { reactionsId: req.params.reactionsId } } },
+      { $pull: { reactions: { reactionId: req.params.reactionId } } },
       { runValidators: true, new: true }
     )
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: "No thought with this id!" })
-          : res.json(video)
+          : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
   },

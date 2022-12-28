@@ -49,4 +49,25 @@ module.exports = {
       .then(() => res.json({ message: "User and associated apps deleted!" }))
       .catch((err) => res.status(500).json(err));
   },
+  addFriend(req, res) {
+    User.create(req.body)
+      .then((thought) => {
+        return User.findOneAndUpdate(
+          { _id: req.body.userId },
+          { $addToSet: { friends: User._id } },
+          { new: true }
+        );
+      })
+      .then((user) =>
+        !user
+          ? res.status(404).json({
+              message: "Thought created, but found no user with that ID",
+            })
+          : res.json("Added a friend to User 🎉")
+      )
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  },
 };
