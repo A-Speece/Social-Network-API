@@ -23,6 +23,6 @@ router
 router.route("/:thoughtId/reactions").post(addThoughtReaction);
 
 // /api/thoughts/:thoughtId/reactions/:reactionId
-router.route("/thought/reactions/:reactionsId").delete(removeThoughtReaction);
+router.route("/:thoughtId/reactions/:reactionId").delete(removeThoughtReaction);
 
 module.exports = router;
